@@ -1,0 +1,41 @@
+<div *ngIf="weather$ | async as weather">
+  <div class="flex-container">
+    <div class="left-panel">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4 flex-container1">
+          <label for="city" class="form-label">City</label>
+          <input
+            type="text"
+            class="item"
+            class="form-control"
+            id="city"
+            formControlName="city"
+            aria-describedby="city"
+            placeholder="Enter city name"
+          />
+
+          <input type="submit" class="btn btn-secondary btnRadius0" />
+        </div>
+      </form>
+    </div>
+    
+    <div class="right-panel">
+          <p class="city-name">{{ weather.name }}</p>
+          <div class="div-img">
+            <img
+              src="../../../assets/{{
+                weather.weather[0].main | lowercase
+              }}.png"
+              alt=""
+            />
+          </div>
+          <p class="description">{{ weather.weather[0].description }}</p>
+
+          <div class="temprature">
+            {{ weather.main.temp | temparatureCelcius }}
+          </div>
+
+          <div class="other-item">Wind Speed: {{ weather.wind.speed }}</div>
+    </div>
+  </div>
+</div>
