@@ -1,4 +1,4 @@
-<div *ngIf="weather$ | async as weather">
+<div class="container" *ngIf="weather$ | async as weather">
   <div class="flex-container">
     <div class="left-panel">
       <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
@@ -18,24 +18,75 @@
         </div>
       </form>
     </div>
-    
     <div class="right-panel">
-          <p class="city-name">{{ weather.name }}</p>
-          <div class="div-img">
-            <img
-              src="../../../assets/{{
-                weather.weather[0].main | lowercase
-              }}.png"
-              alt=""
-            />
-          </div>
-          <p class="description">{{ weather.weather[0].description }}</p>
+      <p class="city-name">{{ weather.name }}</p>
+      <div class="div-img">
+        <img
+          src="../../../assets/{{ weather.weather[0].main | lowercase }}.png"
+          alt=""
+        />
+        <p *ngIf="img$ | async as img" > {{ img > timeNow ? "N" : "T" }} </p>
+        
+        
+      </div>
+      <p class="description">
+        {{ weather.weather[0].description | uppercase }}
+      </p>
 
-          <div class="temprature">
-            {{ weather.main.temp | temparatureCelcius }}
-          </div>
+      <div class="div-temp-flex-container">
+        <p class="temp">{{ weather.main.temp | temparatureCelcius }}</p>
 
-          <div class="other-item">Wind Speed: {{ weather.wind.speed }}</div>
+        <div class="div-temp-flex-items">
+          <span class="temp_feels_like"
+            >Feels Like:
+            {{ weather.main.feels_like | temparatureCelcius }}</span
+          >
+          <span class="temp_feels_like"
+            >Min: {{ weather.main.temp_min | temparatureCelcius }}</span
+          >
+          <span class="temp_feels_like"
+            >Max: {{ weather.main.temp_max | temparatureCelcius }}</span
+          >
+        </div>
+      </div>
+
+      <div class="other-item" *ngIf="weather.wind.speed">
+        Wind Speed: {{ weather.wind.speed }} m/h
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-arrow-down"
+          viewBox="0 0 16 16"
+        >
+          <path
+            class="wind-direction"
+            fill-rule="evenodd"
+            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+          />
+        </svg>
+      </div>
+
+      <div class="other-item" *ngIf="weather.wind.gust">
+        Wind Gust: {{ weather.wind.gust }} m/h
+      </div>
+      <div class="other-item">Humidity: {{ weather.main.humidity }}</div>
+      
+      <div id="test" class="other-item">
+        <div class="flex-sunRiseSet-container">
+          <div *ngIf="sunriseHR$ | async as sunriseHR">
+            Sunrise: {{ sunriseHR }}:
+          </div>
+          <div *ngIf="sunriseMIN$ | async as sunriseMIN">{{ sunriseMIN }}</div>
+
+          <div *ngIf="sunsetHR$ | async as sunsetHR" class="ms-2">
+            Sunse: {{ sunsetHR }}:
+          </div>
+          <div *ngIf="sunsetMIN$ | async as sunsetMIN">{{ sunsetMIN }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

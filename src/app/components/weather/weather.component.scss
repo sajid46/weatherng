@@ -1,60 +1,67 @@
-div:first-child {
+.container {
   min-width: 370px;
-  padding: 20px;
+  width: 100%;
 }
 
 .btnRadius0 {
   border-radius: 0px;
 }
-@media (max-width: 568px) {
-  div:first-child {
-    min-width: 420px;
-    padding: 0px;
+
+@media (max-width: 1000px) {
+  .container {
+      margin-top: -12px;
+      padding: 0px !important;
   }
 }
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid gray;
-
-  .flex-container1 {
-    display: flex;
-    flex-basis: 200px;
-    flex-wrap: nowrap;
-  }
+  border: 15px solid #6c757d52;
+  outline: 1px solid gray;
+  box-shadow: 0px 0px 25px #b1abab;
+  align-self: center;
 
   .left-panel {
-    flex: 1;
+    flex: 2;
     background-color: #dddfdf;
-    padding: 30px 10px;
+    padding: 0px;
     flex-basis: 100px;
 
-    label {
-      display: none;
-    }
-
-    input {
+    .flex-container1 {
       display: flex;
-    }
+      flex-wrap: nowrap;
+      justify-content: start;
+      padding: 20px 10px;
 
-    input[type="text"] {
-      min-width: 150px;
-    }
+      label {
+        display: none;
+      }
 
-    input[type="button"] {
+      input {
+        display: flex;
+      }
+
+      input[type="text"] {
+        min-width: 150px;
+      }
+
+      input[type="submit"] {
+        background-color: #0b3066;
+      }
     }
   }
   .right-panel {
-    flex: 5;
-    background-color: #ecf9f9;
+    flex: 6;
+    background-color: #607d8b;
+    color: #ecf9f9;
     padding: 30px 10px;
     display: flex;
     flex-direction: column;
     flex-basis: 300px;
 
     .city-name {
-      font-size: 85px;
+      font-size: 65px;
       word-spacing: 29;
       display: flex;
       justify-content: center;
@@ -76,111 +83,86 @@ div:first-child {
       background-color: rgba(50, 197, 148, 0);
       justify-content: center;
       margin: 0;
-      font-size: 40px;
+      font-size: 20px;
     }
-
-    .temprature {
+    .div-temp-flex-container {
       display: flex;
       justify-content: center;
-      margin: 0;
-      font-size: 95px;
-      font-weight: lighter;
-      margin-top: 40px;
-    }
+      .temp {
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        font-size: 95px;
+        font-weight: lighter;
+        margin-top: 40px;
+      }
 
-    .temprature::after {
-      font-size: 30%;
-      vertical-align: top;
-      content: "o C";
+      .temp::after {
+        font-size: 30%;
+        vertical-align: top;
+        content: "o C";
+      }
+
+      .div-temp-flex-items {
+        display: flex;
+        flex-direction: column;
+        margin-top: 70px;
+        margin-left: 10px;
+
+        .temp_feels_like {
+          display: flex;
+          justify-content: center;
+          margin: 0;
+          font-size: 17px;
+          font-weight: lighter;
+          margin-bottom: -1px;
+          align-items: flex-start;
+          border-bottom: 1px solid rgb(212, 212, 212);
+        }
+
+        .temp_feels_like::after {
+          font-size: 50%;
+          vertical-align: top;
+          content: "o C";
+        }
+      }
     }
 
     .other-item {
       margin: 10px;
-      font-size: 28px;
+      font-size: 18px;
+      color: #c1d7dc;
       display: flex;
       justify-content: center;
+      margin: auto;
+
+      .flex-sunRiseSet-container{
+        display: flex;
+        justify-content: center;
+        div{
+}
+      }
+    }
+
+    svg {
+      margin-left: 117px;
+    background-color: #dddfdf;
+    width: 27px;
+    height: 27px;
+    padding: 5px;
+    position: absolute;
+    margin-top: 1px;
+    border: 1px solid #b2b7b7;
+    border-radius: 25px;
+    box-shadow: -3px -6px 7px 0px #a2a5a5 inset;
+
+      path {
+        transform: rotate(270deg);
+        transform-origin: 50% 50%;
+        font-size: 32px;
+        color: rgb(20, 41, 41);
+        font-weight: bolder;
+      }
     }
   }
 }
-
-// .btnRadius0{
-//   border-radius: 0px;
-// }
-// .flex-container {
-//   display: flex;
-//   flex-wrap: wrap;
-//   flex: 0 1 100px;
-
-//   .left-panel {
-//     background-color: aqua;
-//     padding: 20px 10px;
-//     flex-basis: 20%px;
-//   }
-//   .right-panel {
-//     display: flex;
-//     flex-basis: 80%;
-//     background-color: brown;
-//     .header {
-//       flex-direction: column;
-//       font-size: 45px;
-//       display: flex;
-//       flex-basis: 100%;
-//       justify-content: center;
-
-//       span {
-//         flex-direction: column;
-//         justify-content: center;
-//         background-color: aquamarine;
-
-//         .city-name {
-//           font-size: 85px;
-//           word-spacing: 29;
-//           display: flex;
-//           justify-content: center;
-//           background-color: rgb(190, 179, 127);
-//         }
-
-//         .div-img {
-//           display: flex;
-//           justify-content: center;
-
-//           img {
-//             width: 130px;
-//             padding: 30px 0px;
-//           }
-//         }
-
-//         .description {
-//           display: flex;
-//           background-color: rgb(50, 197, 148);
-//           justify-content: center;
-//           margin: 0;
-//           font-size: 40px;
-//         }
-//       }
-
-//       .temprature {
-//         display: flex;
-//         justify-content: center;
-//         margin: 0;
-//         font-size: 95px;
-//         font-weight: lighter;
-//         margin-top: 40px;
-//       }
-
-//       .temprature::after {
-//         font-size: 30%;
-//         vertical-align: top;
-//         content: "o C";
-//       }
-
-//       .other-item {
-//         margin: 10px;
-//         font-size: 28px;
-//         display: flex;
-//         justify-content: center;
-//       }
-//     }
-//   }
-
-// }
