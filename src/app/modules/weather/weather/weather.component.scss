@@ -9,8 +9,8 @@
 
 @media (max-width: 1000px) {
   .container {
-      margin-top: -12px;
-      padding: 0px !important;
+    margin-top: -12px;
+    padding: 0px !important;
   }
 }
 
@@ -53,8 +53,8 @@
   }
   .right-panel {
     flex: 6;
-    background-color: #607d8b;
-    color: #ecf9f9;
+    background-color: #a7c9fb;
+    color: var(--bs-body-color);
     padding: 30px 10px;
     display: flex;
     flex-direction: column;
@@ -131,32 +131,42 @@
     .other-item {
       margin: 10px;
       font-size: 18px;
-      color: #c1d7dc;
+      color: #555d5f;
       display: flex;
       justify-content: center;
       margin: auto;
 
-      .flex-sunRiseSet-container{
+      .flex-sunRiseSet-container {
         display: flex;
-        justify-content: center;
-        div{
-}
+    justify-content: center;
+    padding: 17px 33px 4px 33px;
+    color: black;
+    background: white;
+    border: 1px solid #97a9c3;
+    /* border-radius: 8px; */
+    box-shadow: 0px 0px 10px grey;
+    margin-top: 10px;
+
+        img {
+          width: 44px;
+          margin-top: -15px;
+        }
       }
     }
 
     svg {
       margin-left: 117px;
-    background-color: #dddfdf;
-    width: 27px;
-    height: 27px;
-    padding: 5px;
-    position: absolute;
-    margin-top: 1px;
-    border: 1px solid #b2b7b7;
-    border-radius: 25px;
-    box-shadow: -3px -6px 7px 0px #a2a5a5 inset;
+      background-color: #dddfdf;
+      width: 27px;
+      height: 27px;
+      padding: 5px;
+      position: absolute;
+      margin-top: 1px;
+      border: 1px solid #b2b7b7;
+      border-radius: 25px;
+      box-shadow: -3px -6px 7px 0px #a2a5a5 inset;
 
-      path {
+      .wind-direction {
         transform: rotate(270deg);
         transform-origin: 50% 50%;
         font-size: 32px;

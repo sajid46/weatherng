@@ -21,13 +21,17 @@
     <div class="right-panel">
       <p class="city-name">{{ weather.name }}</p>
       <div class="div-img">
-        <img
-          src="../../../assets/{{ weather.weather[0].main | lowercase }}.png"
-          alt=""
-        />
-        <p *ngIf="img$ | async as img" > {{ img > timeNow ? "N" : "T" }} </p>
+        <img src="../../../assets/{{ weatherImg | lowercase }}.png" alt="" />
+
+        <!-- <p *ngIf="img$ | async as img">{{ img > timeNow ? "N" : "T" }}</p>
+
+
+        <div *ngIf="img$ | async as sunsetTime">
+
+        </div> -->
+
         
-        
+
       </div>
       <p class="description">
         {{ weather.weather[0].description | uppercase }}
@@ -52,8 +56,9 @@
 
       <div class="other-item" *ngIf="weather.wind.speed">
         Wind Speed: {{ weather.wind.speed }} m/h
-
-        <svg
+        
+        {{ weather.wind.deg | windDirection }}
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -66,23 +71,25 @@
             fill-rule="evenodd"
             d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
           />
-        </svg>
+        </svg> -->
       </div>
 
       <div class="other-item" *ngIf="weather.wind.gust">
         Wind Gust: {{ weather.wind.gust }} m/h
       </div>
       <div class="other-item">Humidity: {{ weather.main.humidity }}</div>
-      
+
       <div id="test" class="other-item">
         <div class="flex-sunRiseSet-container">
           <div *ngIf="sunriseHR$ | async as sunriseHR">
-            Sunrise: {{ sunriseHR }}:
+            <img src="../../../../assets/sunrise.png" alt="sunrise" />
+            {{ sunriseHR }}:
           </div>
           <div *ngIf="sunriseMIN$ | async as sunriseMIN">{{ sunriseMIN }}</div>
 
           <div *ngIf="sunsetHR$ | async as sunsetHR" class="ms-2">
-            Sunse: {{ sunsetHR }}:
+            <img src="../../../../assets/sunset.png" alt="sunrise" />
+            {{ sunsetHR }}:
           </div>
           <div *ngIf="sunsetMIN$ | async as sunsetMIN">{{ sunsetMIN }}</div>
         </div>

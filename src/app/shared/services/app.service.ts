@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { Weather } from '../model/weather.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherService {
+export class AppService {
   baseURL: any;
   data: any[] | undefined;
 
