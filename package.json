@@ -18,6 +18,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@ngrx/store": "^12.5.1",
+    "@ngrx/store-devtools": "^12.5.1",
     "bootstrap": "^5.1.3",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.6.0",
@@ -26,7 +28,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.11",
-    "@angular/cli": "~12.2.11",
+    "@angular/cli": "^13.2.5",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
@@ -37,5 +39,17 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.3.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.11.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajid46/weather.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sajid46/weather/issues"
+  },
+  "homepage": "https://github.com/sajid46/weather#readme"
 }

@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { Days10WeatherComponent } from './components/days10-weather/days10-weather.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent],

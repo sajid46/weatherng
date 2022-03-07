@@ -1,6 +1,25 @@
+@import '../../../../styles-variables.scss';
+
+
+
+
+.navbar-brand{
+  background-color: #98a9c3;
+  color: #e5e9ef;
+  height: 42px;
+}
+
+.container-fluid{
+  background-color: #c8d2d4;
+  height: $body-height;
+  overflow-y: hidden;
+   
+  
+}
 .container {
   min-width: 370px;
   width: 100%;
+  margin-top: 100px !important;
 }
 
 .btnRadius0 {
@@ -20,42 +39,46 @@
   border: 15px solid #6c757d52;
   outline: 1px solid gray;
   box-shadow: 0px 0px 25px #b1abab;
-  align-self: center;
 
-  .left-panel {
-    flex: 2;
-    background-color: #dddfdf;
-    padding: 0px;
-    flex-basis: 100px;
+  label {
+    display: none;
+  }
 
-    .flex-container1 {
+  
+.left-panel {
+  flex: 2;
+  background-color: #dddfdf;
+  padding: 0px;
+
+  .flex-container1 {
+    display: flex;
+    justify-content: start;
+    padding: 20px 10px;
+
+    input {
       display: flex;
-      flex-wrap: nowrap;
-      justify-content: start;
-      padding: 20px 10px;
+    }
 
-      label {
-        display: none;
-      }
+    input[type="text"] {
+      min-width: 150px;
+      text-transform: capitalize;
+    }
 
-      input {
-        display: flex;
-      }
+    select {
+      display: flex;
+    }
 
-      input[type="text"] {
-        min-width: 150px;
-      }
-
-      input[type="submit"] {
-        background-color: #0b3066;
-      }
+    input[type="submit"] {
+      background-color: #0b3066;
     }
   }
+}
+
   .right-panel {
     flex: 6;
     background-color: #a7c9fb;
     color: var(--bs-body-color);
-    padding: 30px 10px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     flex-basis: 300px;
@@ -74,7 +97,7 @@
 
       img {
         width: 130px;
-        padding: 30px 0px;
+        padding: 0px 0px 30px 0px;
       }
     }
 
@@ -138,14 +161,12 @@
 
       .flex-sunRiseSet-container {
         display: flex;
-    justify-content: center;
-    padding: 17px 33px 4px 33px;
-    color: black;
-    background: white;
-    border: 1px solid #97a9c3;
-    /* border-radius: 8px; */
-    box-shadow: 0px 0px 10px grey;
-    margin-top: 10px;
+        justify-content: center;
+        color: black;
+        strong {
+          background: #9dbbe7;
+          padding: 1px 3px;
+        }
 
         img {
           width: 44px;
@@ -174,5 +195,30 @@
         font-weight: bolder;
       }
     }
+
+    .navbar-custom1 {
+      background-color: #797872;
+      height: 40px;
+    
+      ul{
+        flex-direction: row;
+        li{
+          width: -moz-fit-content;
+          border-right: 1px solid #8f8d86;
+          padding: 1px 8px;
+          -moz-width: fit-content;
+        }
+        li:hover{
+            background-color: #b1b1af;
+        }
+      }
+
+      a {
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    
   }
 }

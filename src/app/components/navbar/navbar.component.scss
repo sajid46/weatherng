@@ -1,10 +1,23 @@
-.navbar-custom{
-    background-color: #e9e7df;
-    color: white;
-    box-shadow: 0px -20px 10px #e1dfd7 inset;
+@import '../../../styles-variables.scss';
 
-    a{
-        color: #0a58ca;
-        cursor: pointer;
-    }
+.navbar-custom {
+  background-color: #e9e7df;
+  color: white;
+  box-shadow: 0px -20px 10px #e1dfd7 inset;
+  height: $navrbar-height-margin-top;
+  a {
+    color: #8b8982;
+    cursor: pointer;
+  }
+}
+
+.navbar-brand{
+    background-color: #dbd9cf;
+    padding: 5px 10px;
+    border: 4px solid #cbc9c3;
+    color: #8b8982;
+    text-shadow: 0px 1px 0px white;
+    border-radius: 14px;
+    box-shadow: inset 0px 0px 2px #f7f2f2;
+    font-weight: bold;
 }
