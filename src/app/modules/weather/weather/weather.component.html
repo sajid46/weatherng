@@ -1,100 +1,99 @@
 <div class="container-fluid pt-5">
   <div class="container">
-  <div class="flex-container">
-    <!-- left-panel -->
-    <div class="left-panel">
-      <div class="m-2">
-        <label for="select-city" class="form-label">City</label>
-        <select
-          id="select-city"
-          aria-describedby="select"
-          class="form-select"
-          [(ngModel)]="citySelected"
-          (change)="selectChanged()"
-        >
-          <option *ngFor="let city of selectCities">
-            {{ city.name }}, {{ city.country }}
-          </option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <form
-        *ngIf="ShowCityInput == true"
-        [formGroup]="myForm"
-        (ngSubmit)="onSubmit()"
-      >
-        <!-- city text and button   -->
-        <div class="flex-container1">
-          <label for="city" class="item form-label">City</label>
-          <input
-            type="text"
-            class="item"
-            class="form-control"
-            id="city"
-            [(ngModel)]="city"
-            formControlName="city"
-            aria-describedby="city"
-            placeholder="Enter city name"
-          />
-
-          <input type="submit" class="item btn btn-secondary btnRadius0" />
+    <div class="flex-container">
+      <!-- left-panel -->
+      <div class="left-panel">
+        <div class="m-2">
+          <label for="select-city" class="form-label">City</label>
+          <select
+            id="select-city"
+            aria-describedby="select"
+            class="form-select"
+            [(ngModel)]="citySelected"
+            (change)="selectChanged()"
+          >
+            <option *ngFor="let city of selectCities">
+              {{ city.name }}, {{ city.country }}
+            </option>
+            <option>Other</option>
+          </select>
         </div>
-      </form>
-    </div>
-<!-- right-panel -->
-    <div class="right-panel" *ngIf="weather$ | async as weather">
 
+        <form
+          *ngIf="ShowCityInput == true"
+          [formGroup]="myForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <!-- city text and button   -->
+          <div class="flex-container1">
+            <label for="city" class="item form-label">City</label>
+            <input
+              type="text"
+              class="item"
+              class="form-control"
+              id="city"
+              [(ngModel)]="city"
+              formControlName="city"
+              aria-describedby="city"
+              placeholder="Enter city name"
+            />
 
-      <nav class="navbar-custom1">
-        <div>
+            <input type="submit" class="item btn btn-secondary btnRadius0" />
+          </div>
+        </form>
+      </div>
+      <!-- right-panel -->
+      <div class="right-panel" *ngIf="weather$ | async as weather">
+        <nav class="navbar-custom1">
+          <div>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="weather/detailed">10-Days</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="weather/detailed">10-Days</a>
-              </li><li class="nav-item active">
+              <li class="nav-item active">
                 <a class="nav-link" href="weather/detailed">10-Days</a>
-            </li>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="weather/detailed">10-Days</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="weather/detailed">10-Days</a>
+              </li>
             </ul>
-    </div>
-    </nav>
+          </div>
+        </nav>
 
-      <p class="city-name">{{ weather.name }}</p>
-      <div class="div-img">
-        <img src="../../../assets/{{ weatherImg | lowercase }}.png" alt="" />
+        <p class="city-name">{{ weather.name }}</p>
+        <div class="div-img">
+          <img src="../../../assets/{{ weatherImg | lowercase }}.png" alt="" />
 
-        <!-- <p *ngIf="sunsetTime$ | async as sunsetTime">
+          <!-- <p *ngIf="sunsetTime$ | async as sunsetTime">
           {{ sunsetTime }} -
           {{ sunsetTime < timeNow ? "Day" : "Night" }}</p> -->
-      </div>
-      <p class="description">
-        {{ weather.weather[0].description | uppercase }}
-      </p>
-
-      <div class="div-temp-flex-container">
-        <p class="temp">{{ weather.main.temp | temparatureCelcius }}</p>
-
-        <div class="div-temp-flex-items">
-          <span class="temp_feels_like"
-            >Feels Like:
-            {{ weather.main.feels_like | temparatureCelcius }}</span
-          >
-          <span class="temp_feels_like"
-            >Min: {{ weather.main.temp_min | temparatureCelcius }}</span
-          >
-          <span class="temp_feels_like"
-            >Max: {{ weather.main.temp_max | temparatureCelcius }}</span
-          >
         </div>
-      </div>
+        <p class="description">
+          {{ weather.weather[0].description | uppercase }}
+        </p>
 
-      <div class="other-item" *ngIf="weather.wind.speed">
-        Wind Speed: {{ weather.wind.speed }} m/h
+        <div class="div-temp-flex-container">
+          <p class="temp">{{ weather.main.temp | temparatureCelcius }}</p>
 
-        {{ weather.wind.deg | windDirection }}
-        <!-- <svg
+          <div class="div-temp-flex-items">
+            <span class="temp_feels_like"
+              >Feels Like:
+              {{ weather.main.feels_like | temparatureCelcius }}</span
+            >
+            <span class="temp_feels_like"
+              >Min: {{ weather.main.temp_min | temparatureCelcius }}</span
+            >
+            <span class="temp_feels_like"
+              >Max: {{ weather.main.temp_max | temparatureCelcius }}</span
+            >
+          </div>
+        </div>
+
+        <div class="other-item" *ngIf="weather.wind.speed">
+          Wind Speed: {{ weather.wind.speed }} m/h
+
+          {{ weather.wind.deg | windDirection }}
+          <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -108,30 +107,32 @@
             d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
           />
         </svg> -->
-      </div>
+        </div>
 
-      <div class="other-item" *ngIf="weather.wind.gust">
-        Wind Gust: {{ weather.wind.gust }} m/h
-      </div>
-      <div class="other-item">Humidity: {{ weather.main.humidity }}</div>
+        <div class="other-item" *ngIf="weather.wind.gust">
+          Wind Gust: {{ weather.wind.gust }} m/h
+        </div>
+        <div class="other-item">Humidity: {{ weather.main.humidity }}</div>
 
-      <div id="test" class="other-item">
-        <div class="flex-sunRiseSet-container">
-          <div *ngIf="sunriseHR$ | async as sunriseHR">
-            <strong>Sunrise:</strong>
-            {{ sunriseHR }}:
+        <div id="test" class="other-item">
+          <div class="flex-sunRiseSet-container">
+            <div *ngIf="sunriseHR$ | async as sunriseHR">
+              <strong>Sunrise:</strong>
+              {{ sunriseHR }}:
+            </div>
+            <div *ngIf="sunriseMIN$ | async as sunriseMIN">
+              {{ sunriseMIN }}
+            </div>
+
+            <div *ngIf="sunsetHR$ | async as sunsetHR" class="ms-2">
+              <strong>Sunset:</strong>
+
+              {{ sunsetHR }}:
+            </div>
+            <div *ngIf="sunsetMIN$ | async as sunsetMIN">{{ sunsetMIN }}</div>
           </div>
-          <div *ngIf="sunriseMIN$ | async as sunriseMIN">{{ sunriseMIN }}</div>
-
-          <div *ngIf="sunsetHR$ | async as sunsetHR" class="ms-2">
-            <strong>Sunset:</strong>
-            
-            {{ sunsetHR }}:
-          </div>
-          <div *ngIf="sunsetMIN$ | async as sunsetMIN">{{ sunsetMIN }}</div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
