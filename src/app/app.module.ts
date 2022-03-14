@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
-import { Days10WeatherComponent } from './components/days10-weather/days10-weather.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -16,7 +15,6 @@ import { environment } from '../environments/environment';
   declarations: [
     AppComponent,
     HomeComponent,
-    Days10WeatherComponent,
     NavbarComponent,
   ],
   imports: [

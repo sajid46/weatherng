@@ -21,11 +21,6 @@ import { DataServiceService } from 'src/app/shared/services/data-service.service
 export class WeatherComponent implements OnInit {
   weather$: Observable<any> | undefined;
 
-  city: string = '';
-
-  myForm = this.fb.group({
-    city: new FormControl('', []),
-  });
   Sunrisehours = '';
   Sunriseminutes = '';
   sunriseHR$: Observable<any> | undefined;
@@ -45,27 +40,13 @@ export class WeatherComponent implements OnInit {
 
   constructor(
     private render: Renderer2,
-    private elem: ElementRef,
     private service: AppService,
     private dataService: DataServiceService,
-    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.selectCities = this.dataService.getSelectCities();
     this.selectCities.sort((a) => (a.name < a.country ? 1 : -1));
-  }
-
-  
-  onSubmit() {
-    this.city = this.myForm?.controls.city.value;
-    // this.citySelected = this.myForm?.controls.select.value;
-
-    this.weather$ = this.service.loadWeather(this.city);
-    this.weatherImg = this.getWeatherImage(this.weather$);
-
-    this.setSunRiseAndSunset(this.weather$);
-    
   }
 
   getWeatherImage(weather$: Observable<any>): string {

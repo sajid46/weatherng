@@ -5,15 +5,17 @@ import { WeatherComponent } from './weather/weather.component';
 import { TemparatureCelciusPipe } from 'src/app/pipes/temparature-celcius.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WindDirectionPipe } from 'src/app/pipes/wind-direction.pipe';
-import { DetailedWeatherComponent } from './detailed-weather/detailed-weather.component';
+import { WeatherDetailsComponent } from './weather-details/weather-details.component';
 
-const routes: Routes = [{ path: '', component: WeatherComponent }, 
-{path: 'detailed', component: DetailedWeatherComponent}
-
-];
+const routes: Routes = [{ path: '', component: WeatherComponent }];
 
 @NgModule({
-  declarations: [TemparatureCelciusPipe, WindDirectionPipe, WeatherComponent, DetailedWeatherComponent],
+  declarations: [
+    TemparatureCelciusPipe,
+    WindDirectionPipe,
+    WeatherComponent,
+    WeatherDetailsComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
