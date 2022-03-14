@@ -107,25 +107,25 @@ export class WeatherComponent implements OnInit {
           m.getMinutes() < 10 ? '0' + m.getMinutes() : m.getMinutes()
         )
       );
-
-      // this.sunsetTime$ = weather$
-      // .pipe(map((p) => new Date(p.sys.sunset * 1000 )));
-
-      //  weather$
-      // .pipe(map(p => p.timezone / 24 ))
-      // .subscribe(x => console.log(x));
   }
 
   selectChanged() {
     if (this.citySelected.toUpperCase() !== 'OTHER') {
-      this.weather$ = this.service.loadWeather(this.citySelected);
-      this.weatherImg = this.getWeatherImage(this.weather$);
-      this.setSunRiseAndSunset(this.weather$);
+      this.getWeather(this.citySelected);
       this.ShowCityInput = false;
     } else {
       this.ShowCityInput = true;
     }
   }
 
-  getCOuntries() {}
+  private getWeather(citySelected: string) {
+    this.weather$ = this.service.loadWeather(citySelected);
+    this.weatherImg = this.getWeatherImage(this.weather$);
+    this.setSunRiseAndSunset(this.weather$);
+  }
+
+  cityEvent($event: any): void{
+    this.weather$ = this.service.loadWeather($event);
+    
+  }
 }

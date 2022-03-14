@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -27,6 +27,8 @@ export class WeatherDetailsComponent implements OnInit {
   @Input() ShowCityInput = false;
   @Input() selectCities: ICities[] | undefined;
 
+  @Output() cityEvent=new EventEmitter<string>();
+
   citySelected = "SelectaCity";
   
   city: string = '';
@@ -54,6 +56,8 @@ export class WeatherDetailsComponent implements OnInit {
     this.setSunRiseAndSunset(this.weather$);
     this.ShowCityInput=false;
     this.citySelected = "SelectaCity";
+
+    this.cityEvent.emit(this.city);
 
     
   }
