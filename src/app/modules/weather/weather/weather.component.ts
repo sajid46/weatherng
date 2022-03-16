@@ -12,6 +12,11 @@ import { map, tap } from 'rxjs/operators';
 import { ICities } from 'src/app/model/select-cities.model';
 import { AppService } from 'src/app/shared/services/app.service';
 import { DataServiceService } from 'src/app/shared/services/data-service.service';
+import * as WeatherActions from '../state/weather.actions';
+
+import { select, Store } from '@ngrx/store';
+import { state } from 'src/app/state/app.state';
+import { WeatherFacade } from '../state/weather.facade';
 
 @Component({
   selector: 'app-weather',
@@ -29,7 +34,7 @@ export class WeatherComponent implements OnInit {
   sunsetMIN$: Observable<any> | undefined;
 
   sunsetTime$: Observable<any> | undefined;
-  
+
   timeNow = new Date();
   weatherImg = '';
   sunriseHRNew = '';
@@ -37,14 +42,12 @@ export class WeatherComponent implements OnInit {
   citySelected: any;
   ShowCityInput = false;
   selectCities: ICities[] | undefined;
-
-  constructor(
-    private render: Renderer2,
-    private service: AppService,
-    private dataService: DataServiceService,
-  ) {}
-
+  
   ngOnInit(): void {
+    this.getCitiesDropDown();
+  }
+
+  private getCitiesDropDown() {
     this.selectCities = this.dataService.getSelectCities();
     this.selectCities.sort((a) => (a.name < a.country ? 1 : -1));
   }
@@ -52,6 +55,7 @@ export class WeatherComponent implements OnInit {
   getWeatherImage(weather$: Observable<any>): string {
     weather$.subscribe((p) => (this.weatherImg = p.weather[0].main));
 
+    
     this.timeNow = new Date();
 
     return this.weatherImg.toUpperCase() === 'DRIZZLE'
@@ -59,73 +63,25 @@ export class WeatherComponent implements OnInit {
       : this.weatherImg.toLowerCase();
   }
 
-  setSunRiseAndSunset(weather$: Observable<any>): void {
-    weather$
-      .pipe(map((p) => new Date(1000 * p.sys.sunrise)))
-      .pipe(
-        map(
-          (m) =>
-            (this.sunriseHRNew = (
-              m.getHours() < 10 ? '0' + m.getHours() : m.getHours()
-            ).toString())
-        )
-      );
-
-    weather$
-      .pipe(map((p) => new Date(1000 * p.sys.sunrise)))
-      .pipe(
-        map(
-          (m) =>
-            (this.sunriseMINNew = (
-              m.getMinutes() < 10 ? '0' + m.getMinutes() : m.getMinutes()
-            ).toString())
-        )
-      );
-
-    this.sunriseHR$ = weather$
-      .pipe(map((p) => new Date(1000 * p.sys.sunrise)))
-      .pipe(
-        map((m) => (m.getHours() < 10 ? '0' + m.getHours() : m.getHours()))
-      );
-    this.sunriseMIN$ = weather$
-      .pipe(map((p) => new Date(1000 * p.sys.sunrise)))
-      .pipe(
-        map((m) =>
-          m.getMinutes() < 10 ? '0' + m.getMinutes() : m.getMinutes()
-        )
-      );
-
-    this.sunsetHR$ = weather$
-      .pipe(map((p) => new Date(1000 * p.sys.sunset)))
-      .pipe(
-        map((m) => (m.getHours() < 10 ? '0' + m.getHours() : m.getHours()))
-      );
-    this.sunsetMIN$ = weather$
-      .pipe(map((p) => new Date(1000 * p.sys.sunset)))
-      .pipe(
-        map((m) =>
-          m.getMinutes() < 10 ? '0' + m.getMinutes() : m.getMinutes()
-        )
-      );
-  }
-
-  selectChanged() {
-    if (this.citySelected.toUpperCase() !== 'OTHER') {
-      this.getWeather(this.citySelected);
-      this.ShowCityInput = false;
-    } else {
-      this.ShowCityInput = true;
-    }
+  private loadWeather(citySelected: string) {
+    this.weather$ = this.weatherFacade.loadWeather$;
+    this.weatherFacade.loadWeather(citySelected);
+    this.weatherImg = this.getWeatherImage(this.weather$);
   }
 
   private getWeather(citySelected: string) {
-    this.weather$ = this.service.loadWeather(citySelected);
+    this.weather$ = this.weatherFacade.getWeather$;
+    this.weatherFacade.getWeather(citySelected);
     this.weatherImg = this.getWeatherImage(this.weather$);
-    this.setSunRiseAndSunset(this.weather$);
   }
 
-  cityEvent($event: any): void{
-    this.weather$ = this.service.loadWeather($event);
-    
+  cityEvent($event: any): void {
+    //this.loadWeather($event);
+    this.getWeather($event);
   }
+
+  constructor(
+    private dataService: DataServiceService,
+    private weatherFacade: WeatherFacade
+  ) {}
 }

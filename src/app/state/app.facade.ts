@@ -9,9 +9,5 @@ import * as WeatherActions from '../modules/weather/state/weather.actions';
 export class AppFacade {
   constructor(private store: Store<state>) {}
 
-  loadWeather(city: string): void {
-    this.store.dispatch(
-      WeatherActions.loadWeather({ city: city })
-    );
-  }
+  
 }
