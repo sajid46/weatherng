@@ -25,10 +25,10 @@ export const getWeather = createSelector(
   (state) => state.weather[state.weather.length - 1]
 );
 
-export const loadWeather = createSelector(
-  getWeatherFeatureState,
-  (state) => state.weather.filter(x => x.city == 'Crawley')
-);
+// export const loadWeather = createSelector(
+//   getWeatherFeatureState,
+//   (state) => state.weather.filter(x => x.city == 'crawley')
+// );
 
 export const WeatherReducer = createReducer<WeatherState>(
   initialState,
