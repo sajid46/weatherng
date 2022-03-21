@@ -83,25 +83,21 @@ export class WeatherComponent implements OnInit {
 
   combileLatest(city: any) {
     this.weather$ = this.weatherFacade.loadWeather$
-      .pipe(map((cs) => cs.filter((c) => c.name.toLowerCase() === city.toLowerCase())))
+      .pipe(map((cs) => cs.filter((c) => c.name === city)))
       .pipe(tap((t) => console.log(t)));
 
-    // this.weather$ = combineLatest([this.weather$, city$])?.pipe(
-    //   map(([w, c]) =>
+    // combineLatest([this.weather$, city])?.pipe(
+    //   map(w =>
     //     w.forEach((element: any) => {
-    //       if(element.name == c)
+    //       if(element.name.toLowerCase() == city.toLowerCase())
     //       {
-    //       return element;
+    //         console.log(element);
+    //         this.weather$ = element;
     //       }
     //     })
     //   )
     // );
 
-    // this.weather$ = combineLatest([this.weather$, city])?.pipe(
-    //   map(([w, c]) =>
-    //     w.name == 'Bristol'
-    //   )
-    // );
   }
 
   constructor(
