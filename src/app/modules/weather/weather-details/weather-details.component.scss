@@ -1,86 +1,88 @@
 @import "../../../../styles-variables.scss";
 
-.navbar-brand {
-  background-color: #98a9c3;
-  color: #e5e9ef;
-  height: 42px;
-}
-
-.container-fluid {
-  background-color: #c8d2d4;
-  height: $body-height;
-  overflow-y: hidden;
-}
-.container {
-  min-width: 370px;
-  width: 100%;
-  margin-top: 60px !important;
-}
-
-.btnRadius0 {
-  border-radius: 0px;
-}
-
-@media (max-width: 1000px) {
-  .container {
-    margin-top: -12px;
-    padding: 0px !important;
+@media (max-width: 500px) {
+  .container-grid {
+    grid-template-columns: 2fr;
   }
 }
 
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  border: 15px solid #6c757d52;
-  outline: 1px solid gray;
-  box-shadow: 0px 0px 25px #b1abab;
+:root {
+  --main-b-color: rgb(65, 35, 35);
+}
 
-  
-  label {
-    display: none;
+.container-grid {
+  display: grid;
+  height: calc(100vh - 60px);
+  grid-template-areas:
+    "nav main sidebar"
+    "footer footer footer";
+
+  grid-template-columns: 2fr 7fr 2fr;
+  grid-template-rows: 15fr 2fr;
+
+  .img-bg {
+    padding: 0.25rem;
+    /* max-width: 100%; */
+    height: auto;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    left: -4px;
+    min-height: 688px;
+    width: 101vw !important;
   }
 
-  .left-panel {
-    flex: 2;
-    background-color: #dddfdf;
-    padding: 0px;
-    max-height: 650px;
+  nav,
+  main,
+  aside,
+  footer {
+    background-color: rgb(223, 224, 224);
+    border: 1px solid rgba(67, 85, 92, 0.548);
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px #00000096;
+  }
 
+  nav {
+    background-color: rgba(35, 57, 75, 0.808);
 
-    .flex-container-input-city {
+    .option-other {
+      background-color: #d1d1d1 !important;
+    }
+
+    .select-city {
+      display: none;
+    }
+    .flex-container-city-column {
       display: flex;
-      justify-content: start;
-      padding: 1px 10px 10px 10px;
-
-      input {
+      flex-direction: column;
+      background-color: transparent;
+      justify-content: left;
+      margin-top: 30px;
+      label {
+        font-size: 20px;
+      }
+      ul {
         display: flex;
-      }
-
-      input[type="text"] {
-        min-width: 150px;
-        text-transform: capitalize;
-      }
-
-      
-
-      input[type="submit"] {
-        background-color: #0b3066;
+        flex-direction: column !important;
+        list-style: none;
+        padding: 0px;
+        li {
+          a {
+            text-decoration: none;
+            color: #7fcff1;
+            font-size: 16px;
+            text-transform: capitalize;
+          }
+        }
       }
     }
   }
 
-  .option-other {
-    background-color: #d1d1d1 !important;
-  }
-
-  .right-panel {
-    flex: 6;
-    background-color: #c0c6cd;
-    color: var(--bs-body-color);
-    padding-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    flex-basis: 300px;
+  main {
+    grid-area: main;
+    background-color: rgba(66, 64, 64, 0.678);
 
     .city-name {
       font-size: 78px;
@@ -91,8 +93,8 @@
     }
 
     .div-img {
-      display: flex;
-      justify-content: center;
+      display: flex !important;
+      justify-content: center !important;
 
       img {
         width: 130px;
@@ -153,7 +155,6 @@
     .other-item {
       margin: 10px;
       font-size: 18px;
-      color: #555d5f;
       display: flex;
       justify-content: center;
       margin: auto;
@@ -218,4 +219,60 @@
       }
     }
   }
+
+  footer {
+    background-color: #555d5f;
+  }
+
+  nav {
+    grid-area: nav;
+    ul {
+      display: flex;
+      flex-direction: column;
+      padding: 0px;
+      li {
+        list-style: none;
+        padding: 0px;
+        a {
+          text-decoration: none;
+          font-size: 18px;
+          color: #dddfdf;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+
+  aside {
+    grid-area: sidebar;
+    background-color: #0b2f66cc;
+  }
+
+  footer {
+    grid-area: footer;
+  }
+
+  .select-lebel {
+    display: none;
+  }
+
+  .flex-container-input-city {
+    display: flex;
+    justify-content: start;
+
+    input[type="text"] {
+      min-width: 150px;
+      flex-grow: 2;
+      text-transform: capitalize;
+    }
+
+    input[type="submit"] {
+      flex-grow: 1;
+      background-color: #0b3066;
+    }
+  }
+}
+
+.btnRadius0 {
+  border-radius: 0px;
 }

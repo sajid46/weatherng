@@ -13,6 +13,9 @@ import { DataServiceService } from 'src/app/shared/services/data-service.service
 })
 export class WeatherDetailsComponent implements OnInit {
   @Input() weather$: Observable<any> | undefined;
+  @Input() city$: Observable<any> | undefined;
+
+  
   @Input() sunriseHR$: Observable<any> | undefined;
   @Input() sunriseMIN$: Observable<any> | undefined;
   @Input() sunsetHR$: Observable<any> | undefined;
@@ -28,12 +31,16 @@ export class WeatherDetailsComponent implements OnInit {
   @Input() selectCities: ICities[] | undefined;
 
   @Output() cityEvent = new EventEmitter<string>();
-
+  @Output() citySelectedEvent = new EventEmitter<string>();
+  
   citySelected = 'SelectaCity';
 
   city: string = '';
+  cityselected = '';
+  
   myForm = this.fb.group({
     city: new FormControl('', []),
+    cityselected: new FormControl('', [])
   });
 
   constructor(
@@ -44,6 +51,10 @@ export class WeatherDetailsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  citySelected2($event: any){
+    this.cityEvent.emit($event.target.text);
+  }
+
   onSubmit() {
     this.city = this.myForm?.controls.city.value;
 
@@ -52,16 +63,21 @@ export class WeatherDetailsComponent implements OnInit {
     this.citySelected = 'SelectaCity';
 
     this.cityEvent.emit(this.city);
+    this.city="";
   }
 
-  selectChanged() {
-    if (this.citySelected.toUpperCase() !== 'OTHER') {
-      this.cityEvent.emit(this.citySelected);
-      this.setSunRiseAndSunset(this.weather$);
-      this.ShowCityInput = false;
-    } else {
-      this.ShowCityInput = true;
-    }
+  // selectChanged() {
+  //   if (this.citySelected.toUpperCase() !== 'OTHER') {
+  //     this.citySelectedEvent.emit(this.citySelected);
+  //     this.setSunRiseAndSunset(this.weather$);
+  //     this.ShowCityInput = false;
+  //   } else {
+  //     this.ShowCityInput = true;
+  //   }
+  // }
+
+  selectClicked($event: any){
+    this.citySelectedEvent.emit($event.target.text);
   }
 
   setSunRiseAndSunset(weather$: Observable<any> | undefined): void {

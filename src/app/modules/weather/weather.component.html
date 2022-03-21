@@ -1,5 +1,6 @@
 <app-weather-details
   [weather$]="weather$"
+  [city$]="city$"
   [sunriseHR$]="sunriseHR$"
   [sunriseMIN$]="sunriseMIN$"
   [sunsetHR$]="sunsetHR$"
@@ -11,4 +12,5 @@
   [ShowCityInput]="ShowCityInput"
   [selectCities]="selectCities"
   (cityEvent)="cityEvent($event)"
+  (citySelectedEvent)="citySelectedEvent($event)"
 ></app-weather-details>

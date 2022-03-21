@@ -1,23 +1,23 @@
 @import '../../../styles-variables.scss';
 
 .navbar-custom {
-  background-color: #e9e7df;
+  background-color: #605d51d4;
   color: white;
-  box-shadow: 0px -20px 10px #e1dfd7 inset;
+  box-shadow: 0px -20px 10px #4645413d inset;
   height: $navrbar-height-margin-top;
   a {
-    color: #8b8982;
+    color: #c7bfa5;
     cursor: pointer;
   }
 }
 
 .navbar-brand{
-    background-color: #dbd9cf;
-    padding: 5px 10px;
-    border: 4px solid #cbc9c3;
-    color: #8b8982;
-    text-shadow: 0px 1px 0px white;
-    border-radius: 14px;
-    box-shadow: inset 0px 0px 2px #f7f2f2;
-    font-weight: bold;
+  background-color: #bdbaaf;
+  padding: 5px 10px;
+  border: 4px solid #f1eee4;
+  color: #7e7c76;
+  text-shadow: 0px 1px 0px #e9e5d6;
+  border-radius: 9px;
+  box-shadow: 0px 0px 9px #3c3333fa;
+  font-weight: bold;
 }
