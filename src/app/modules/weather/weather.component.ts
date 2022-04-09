@@ -78,7 +78,8 @@ export class WeatherComponent implements OnInit {
   }
 
   citySelectedEvent($event: any): void {
-    this.combileLatest($event);
+    // this.combileLatest($event);
+    this.getWeather($event);
   }
 
   combileLatest(city: any) {
