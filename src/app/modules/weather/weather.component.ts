@@ -1,20 +1,10 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { combineLatest, from, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ICities } from 'src/app/model/select-cities.model';
-import { AppService } from 'src/app/shared/services/app.service';
 import { DataServiceService } from 'src/app/shared/services/data-service.service';
 import { state } from 'src/app/state/app.state';
-import * as WeatherActions from '../weather/state/weather.actions';
 import { WeatherFacade } from './state/weather.facade';
 
 @Component({
@@ -98,7 +88,6 @@ export class WeatherComponent implements OnInit {
     //     })
     //   )
     // );
-
   }
 
   constructor(
